@@ -277,7 +277,12 @@ class DataProcessCleanup:
         assert self.ctx.graph
 
         dpis = self.fetch_dpis(job.urn, self.config.batch_size)
-        dpis.sort(key=lambda x: x["created"]["time"], reverse=True)
+        dpis.sort(
+            key=lambda x: x["created"]["time"]
+            if x["created"] and x["created"]["time"]
+            else 0,
+            reverse=True,
+        )
 
         with ThreadPoolExecutor(max_workers=self.config.max_workers) as executor:
             if self.config.keep_last_n:
@@ -401,7 +406,12 @@ class DataProcessCleanup:
                     total_runs=job.get("entity").get("runs").get("total"),
                 )
                 if datajob_entity.total_runs > 0:
-                    self.delete_dpi_from_datajobs(datajob_entity)
+                    try:
+                        self.delete_dpi_from_datajobs(datajob_entity)
+                    except Exception as e:
+                        self.report.failure(
+                            f"While trying to delete {datajob_entity} ", exc=e
+                        )
                 if (
                     datajob_entity.total_runs == 0
                     and self.config.delete_empty_data_jobs
