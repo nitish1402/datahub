@@ -1,0 +1,16 @@
+[tool.poetry]
+name = "datahub"
+version = "0.1.0"
+description = ""
+authors = ["nitish1402 <nitish2011204@outlook.com>"]
+readme = "README.md"
+
+[tool.poetry.dependencies]
+python = "^3.12"
+acryl-datahub = "^0.14.1.6"
+cx-oracle = "^8.3.0"
+
+
+[build-system]
+requires = ["poetry-core"]
+build-backend = "poetry.core.masonry.api"

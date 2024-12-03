@@ -1,0 +1,12 @@
+source:
+  type: "oracle_custom.custon_oracle_source.CustomOracleSource"
+  config:
+    host_port: "localhost:1521"
+    username: hr
+    password: myoraclepassword
+    service: FREEPDB1
+
+sink:
+  type: "datahub-rest"
+  config:
+    server: "http://localhost:8080"

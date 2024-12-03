@@ -1,0 +1,5 @@
+Metadata-Version: 2.1
+Name: custom_oracle
+Version: 1.0
+Summary: Sample project for Datahub custom sources
+Requires-Dist: acryl-datahub
