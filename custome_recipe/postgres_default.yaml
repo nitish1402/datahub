@@ -1,0 +1,49 @@
+source:
+  type: postgres
+  config:
+    host_port: "localhost:5432"
+    username: postgres
+    password: postgres123
+    database: postgres
+
+    classification:
+      enabled: true
+      classifiers:
+        - type: datahub
+          config:
+            confidence_level_threshold: 0.7
+            info_types_config:
+              Aadhar:
+                prediction_factors_and_weights:
+                  name: 0.4
+                  description: 0
+                  datatype: 0
+                  values: 0.6
+                name:
+                  regex:
+                    - "^.*aadhar.*$"
+                    - "^.*uidai.*$"
+                    - aadhar
+                values:
+                  prediction_type: regex
+                  regex:
+                    - "^[2-9]{1}[0-9]{3}[0-9]{4}[0-9]{4}$"
+                  library: []
+              Pan:
+                prediction_factors_and_weights:
+                  name: 0.4
+                  description: 0
+                  datatype: 0
+                  values: 0.6
+                name:
+                  regex:
+                    - "^.*pan.*$"
+                    - pan
+                values:
+                  prediction_type: regex
+                  regex:
+                    - "^[a-zA-Z]{3}[pPcChHfFatTblLjJgG][A-Za-z][\\d]{4}[A-Za-z]$"
+                  library: []
+    schema_pattern:
+      allow:
+        - pe

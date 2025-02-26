@@ -7,7 +7,7 @@ readme = "README.md"
 
 [tool.poetry.dependencies]
 python = "^3.12"
-acryl-datahub = {extras = ["oracle"], version = "^0.14.1.12"}
+acryl-datahub = {extras = ["classification", "oracle", "postgres"], version = "^0.15.0.5"}
 cx-oracle = "^8.3.0"
 
 

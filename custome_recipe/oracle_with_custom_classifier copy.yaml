@@ -1,0 +1,46 @@
+source:
+  type: oracle_custom.new_oracle.OracleStoredProcedureIngestion
+  config:
+    host_port: "localhost:1521"
+    username: system
+    password: testme
+    service_name: FREEPDB1
+    data_dictionary_mode: DBA
+    classification:
+      enabled: true
+      classifiers:
+        - type: custom_classifier.custon_classifier.DataClassifier
+          config:
+            classification_mode: "default"
+    schema_pattern:
+      allow:
+        - hr
+      deny:
+        - sys
+        - APPQOSSYS
+        - AUDSYS
+        - CTXSYS
+        - DBSFWUSER
+        - DBSNMP
+        - DVF
+        - DVSYS
+        - GGSHAREDCAP
+        - GSMADMIN_INTERNAL
+        - LBACSYS
+        - MDSYS
+        - OUTLN
+        - PUBLIC
+        - REMOTE_SCHEDULER_AGENT
+        - SYS
+        - SYSTEM
+        - VECSYS
+        - XDB
+        - dip
+        - anonymous
+        - nitish
+        - ggsys
+        - mddata
+        - dgpdb_init
+        - pdbadmin
+        - gsmcatuser
+        - gsmuser

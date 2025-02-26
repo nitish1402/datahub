@@ -1,5 +1,5 @@
 Metadata-Version: 2.2
-Name: custom_oracle
+Name: custom_classifier
 Version: 1.0
 Summary: Sample project for Datahub custom sources
 Requires-Dist: acryl-datahub

@@ -1,0 +1,21 @@
+source:
+  type: postgres
+  config:
+    host_port: "localhost:5432"
+    username: postgres
+    password: postgres123
+    database: postgres
+
+    include_tables: true
+    include_views: false
+
+    classification:
+      enabled: true
+      classifiers:
+        - type: custom_classifier.custon_classifier.DataClassifier
+          config:
+            classification_mode: "default"
+
+    schema_pattern:
+      allow:
+        - pe

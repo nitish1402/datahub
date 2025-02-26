@@ -1,0 +1,109 @@
+source:
+  type: oracle
+  config:
+    host_port: "localhost:1521"
+    username: system
+    password: testme
+    service_name: FREEPDB1
+    data_dictionary_mode: DBA
+    classification:
+      enabled: true
+      info_type_to_term:
+        Email_Address: Email
+      classifiers:
+        - type: datahub
+          config:
+            confidence_level_threshold: 0.7
+            info_types_config:
+              Aadhar:
+                prediction_factors_and_weights:
+                  name: 0.4
+                  description: 0
+                  datatype: 0
+                  values: 0.6
+                name:
+                  regex:
+                    - "^.*aadhar.*$"
+                    - "^.*uidai.*$"
+                    - aadhar
+                values:
+                  prediction_type: regex
+                  regex:
+                    - "^[2-9]{1}[0-9]{3}[0-9]{4}[0-9]{4}$"
+                  library: []
+              Pan:
+                prediction_factors_and_weights:
+                  name: 0.4
+                  description: 0
+                  datatype: 0
+                  values: 0.6
+                name:
+                  regex:
+                    - "^.*pan.*$"
+                    - pan
+                values:
+                  prediction_type: regex
+                  regex:
+                    - "^[a-zA-Z]{3}[pPcChHfFatTblLjJgG][A-Za-z][\\d]{4}[A-Za-z]$"
+                  library: []
+              Email_Address:
+                prediction_factors_and_weights:
+                  name: 0.4
+                  description: 0
+                  datatype: 0
+                  values: 0.6
+                name:
+                  regex:
+                    - ^.*mail.*id.*$
+                    - ^.*id.*mail.*$
+                    - ^.*mail.*add.*$
+                    - ^.*add.*mail.*$
+                    - email
+                    - mail
+                description:
+                  regex:
+                    - ^.*mail.*id.*$
+                    - ^.*mail.*add.*$
+                    - email
+                    - mail
+                datatype:
+                  type:
+                    - str
+                values:
+                  prediction_type: regex
+                  regex:
+                    - '[A-Za-z0-9._%+-]+@[A-Za-z0-9.-]+\.[A-Z|a-z]{2,}'
+                  library: []
+    schema_pattern:
+      allow:
+        - hr
+        - co
+      deny:
+        - sys
+        - APPQOSSYS
+        - AUDSYS
+        - CTXSYS
+        - DBSFWUSER
+        - DBSNMP
+        - DVF
+        - DVSYS
+        - GGSHAREDCAP
+        - GSMADMIN_INTERNAL
+        - LBACSYS
+        - MDSYS
+        - OUTLN
+        - PUBLIC
+        - REMOTE_SCHEDULER_AGENT
+        - SYS
+        - SYSTEM
+        - VECSYS
+        - XDB
+        - dip
+        - anonymous
+        - nitish
+        - ggsys
+        - mddata
+        - dgpdb_init
+        - pdbadmin
+        - gsmcatuser
+        - gsmuser
