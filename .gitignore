@@ -130,3 +130,19 @@ test-models/bin/
 datahub-executor/
 datahub-integrations-service/
 metadata-ingestion-modules/acryl-cloud
+
+
+# Ignore Python build artifacts
+*.egg-info/
+build/
+dist/
+__pycache__/
+*.pyc
+*.pyo
+*.pyd
+*.log
+
+*.zip
+*.gz
+
+**/dist
