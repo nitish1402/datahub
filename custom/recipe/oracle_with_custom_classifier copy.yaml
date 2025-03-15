@@ -1,7 +1,7 @@
 source:
-  type: oracle_custom.new_oracle.OracleStoredProcedureIngestion
+  type: oracle
   config:
-    host_port: "localhost:1521"
+    host_port: "oracledb:1521"
     username: system
     password: testme
     service_name: FREEPDB1
@@ -9,9 +9,9 @@ source:
     classification:
       enabled: true
       classifiers:
-        - type: custom_classifier.custon_classifier.DataClassifier
+        - type: type_classifier.presidio_nalayzer.PIIClassifier
           config:
-            classification_mode: "default"
+            classification_confidence: 1.0
     schema_pattern:
       allow:
         - hr

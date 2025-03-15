@@ -9,6 +9,7 @@ readme = "README.md"
 python = "^3.12"
 acryl-datahub = {extras = ["classification", "oracle", "postgres"], version = "^0.15.0.5"}
 cx-oracle = "^8.3.0"
+presidio-analyzer = "^2.2.357"
 
 
 [build-system]

@@ -6,6 +6,8 @@ setup_output = setup(
     description="Sample project for Datahub custom sources",
     package_dir={"": "src"},
     packages=find_packages("src"),
-    install_requires=["acryl-datahub"],
+    install_requires=[
+        "presidio-analyzer>=2.2.357"
+    ],
 )
 

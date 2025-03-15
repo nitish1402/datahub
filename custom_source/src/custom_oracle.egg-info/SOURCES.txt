@@ -1,8 +1,0 @@
-setup.py
-src/custom_oracle.egg-info/PKG-INFO
-src/custom_oracle.egg-info/SOURCES.txt
-src/custom_oracle.egg-info/dependency_links.txt
-src/custom_oracle.egg-info/requires.txt
-src/custom_oracle.egg-info/top_level.txt
-src/oracle_custom/__init__.py
-src/oracle_custom/new_oracle.py
