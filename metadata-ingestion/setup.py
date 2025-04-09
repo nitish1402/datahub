@@ -15,7 +15,7 @@ _self_pin = (
 
 base_requirements = {
     # Our min version of typing_extensions is somewhat constrained by Airflow.
-    "typing_extensions>=4.2.0",
+    "typing_extensions>=4.5.0",
     # Actual dependencies.
     "typing-inspect",
     # pydantic 1.8.2 is incompatible with mypy 0.910.
@@ -185,7 +185,11 @@ looker_common = {
     "lkml>=1.3.4",
     *sqlglot_lib,
     "GitPython>2",
-    "python-liquid",
+    # python-liquid 2 includes a bunch of breaking changes.
+    # See https://jg-rp.github.io/liquid/migration/
+    # Eventually we should fully upgrade to v2, but that will require
+    # us to drop Python 3.8 support first.
+    "python-liquid<2",
     "deepmerge>=1.1.1",
 }
 
@@ -313,7 +317,7 @@ delta_lake = {
     *s3_base,
     *abs_base,
     # Version 0.18.0 broken on ARM Macs: https://github.com/delta-io/delta-rs/issues/2577
-    "deltalake>=0.6.3, != 0.6.4, < 0.18.0; platform_system == 'Darwin' and platform_machine == 'arm64'",
+    "deltalake>=0.6.3, != 0.6.4, != 0.18.0; platform_system == 'Darwin' and platform_machine == 'arm64'",
     "deltalake>=0.6.3, != 0.6.4; platform_system != 'Darwin' or platform_machine != 'arm64'",
 }
 
@@ -348,9 +352,7 @@ sac = {
 
 superset_common = {
     "requests",
-    "sqlalchemy",
-    "great_expectations",
-    "greenlet",
+    *sqlglot_lib,
 }
 
 # Note: for all of these, framework_common will be added.
@@ -602,7 +604,7 @@ debug_requirements = {
 lint_requirements = {
     # This is pinned only to avoid spurious errors in CI.
     # We should make an effort to keep it up to date.
-    "ruff==0.9.7",
+    "ruff==0.11.4",
     "mypy==1.10.1",
 }
 
@@ -712,7 +714,7 @@ full_test_dev_requirements = {
             "mariadb",
             "redash",
             "vertica",
-            "vertexai"
+            "vertexai",
         ]
         if plugin
         for dependency in plugins[plugin]
@@ -802,7 +804,8 @@ entry_points = {
         "sac = datahub.ingestion.source.sac.sac:SACSource",
         "cassandra = datahub.ingestion.source.cassandra.cassandra:CassandraSource",
         "neo4j = datahub.ingestion.source.neo4j.neo4j_source:Neo4jSource",
-        "vertexai = datahub.ingestion.source.vertexai:VertexAISource",
+        "vertexai = datahub.ingestion.source.vertexai.vertexai:VertexAISource",
+        "hex = datahub.ingestion.source.hex.hex:HexSource",
     ],
     "datahub.ingestion.transformer.plugins": [
         "pattern_cleanup_ownership = datahub.ingestion.transformer.pattern_cleanup_ownership:PatternCleanUpOwnership",
